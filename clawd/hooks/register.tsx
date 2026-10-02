@@ -11,7 +11,7 @@ import type { Buf, Power } from './scene'
 import { TH, TW, col, copy, tuiAgents, tuiCells, tuiEnvelope, tuiFx, tuiMarker, tuiMascot, tuiRoom } from './tui'
 import type { Grid } from './tui'
 
-const PANE = 'qg'
+const PANE = 'clawd'
 const SLEEP_AFTER = 4 * 60_000
 const WALK_MS = 22 // per pixel, on desktop
 const WALK_STEP = 3 // pixels per frame, in the terminal
@@ -24,7 +24,7 @@ const INITIAL: QgState = {
   tab: 'hud', lights: true, model: '', limits: [], tools: {}, calls: 0, errors: 0, files: [],
   agentsTotal: 0, compactions: 0, turns: 0, startedAt: 0, xp: 0, pets: 0, snacks: 0, tokens: 0,
 }
-const st = atom({ plugin: 'qg', key: 's' } as const, INITIAL)
+const st = atom({ plugin: 'clawd', key: 's' } as const, INITIAL)
 
 const LABEL: Record<Mood, string> = {
   idle: 'chilling', walk: 'walking', think: 'thinking', work: 'working', wait: 'waiting for you',
@@ -548,7 +548,7 @@ export const register: Register = (on, options) => {
     const cwd = await $.session.cwd()
     const home = (await $.env.get('HOME')) ?? ''
     myName = cwd === home ? 'home' : (cwd.split('/').filter(Boolean).pop() ?? 'claude')
-    if (home) crewDir = `${home}/.claude/qg-crew`
+    if (home) crewDir = `${home}/.claude/clawd-crew`
     void publish($, true)
     $.clock.every(1000, () => publish($))
     $.clock.every(1500, () => scan($))

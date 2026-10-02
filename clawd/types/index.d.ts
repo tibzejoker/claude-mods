@@ -46,6 +46,6 @@ export type QgState = {
 
 declare module 'claude-code' {
   interface PluginState {
-    qg: { s: QgState }
+    clawd: { s: QgState }
   }
 }

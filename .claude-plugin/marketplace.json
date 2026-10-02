@@ -6,10 +6,10 @@
   "description": "Mods Claude Code : Clawd au bureau, miniatures d'images dans le terminal, terminal distant, aperçu live de ce que Claude construit (web, mobile, desktop, jeu), récap, masque des secrets",
   "plugins": [
     {
-      "name": "qg",
-      "source": "./qg",
+      "name": "clawd",
+      "source": "./clawd",
       "description": "Clawd's HQ: Clawd lives in a pixel art office and mimes what Claude does, with a game HUD (model, context, rate limits), menus and interactions",
-      "version": "0.7.0"
+      "version": "0.8.0"
     },
     {
       "name": "vignettes",

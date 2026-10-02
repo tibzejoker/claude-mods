@@ -1,6 +1,6 @@
 {
-  "name": "qg",
-  "version": "0.7.0",
+  "name": "clawd",
+  "version": "0.8.0",
   "description": "Clawd's HQ: Clawd lives in a pixel art office, mimes what Claude does, and a game HUD shows the model, context and rate limits",
   "types": "./types/index.d.ts",
   "userConfig": {
