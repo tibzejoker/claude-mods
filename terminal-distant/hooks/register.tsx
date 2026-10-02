@@ -127,7 +127,7 @@ export const register: Register = (on, options) => {
     if (!(await read($, cwdAtom))) await update($, cwdAtom, () => e.cwd)
     const list = await read($, runs)
     nextId = list.reduce((m, r) => Math.max(m, r.id), 0) + 1
-    await $.command.register({ name: 'terminal', description: 'Terminal dans un panneau (desktop, VS Code, mobile en Remote Control)' })
+    await $.command.register({ name: 'terminal', description: 'A terminal in a panel (desktop, VS Code, mobile in Remote Control)' })
     return next(e)
   })
 

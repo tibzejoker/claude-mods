@@ -1,6 +1,6 @@
 import type { EngineInterface, Register } from 'claude-code'
 
-// /apercu : ce que Claude construit (site, app mobile, client lourd, jeu), en
+// /preview : ce que Claude construit (site, app mobile, client lourd, jeu), en
 // direct dans un panneau du client desktop, VS Code, du téléphone ou du terminal.
 //
 // Un hub tourne sur la machine de la session (daemon/apercu.py, 127.0.0.1
@@ -8,7 +8,7 @@ import type { EngineInterface, Register } from 'claude-code'
 // Android (adb), un simulateur iOS, un écran, ou un adaptateur qui parle le
 // protocole Aperçu (PROTOCOLE.md), sur cette machine ou ailleurs. Les cibles
 // d'un projet sont décrites dans son .apercu.json, que Claude écrit lui-même en
-// intégrant le projet (skill apercu:integrer). Les images remontent par le
+// intégrant le projet (skill apercu:integrate). Les images remontent par le
 // canal du client (Remote Control compris), tes gestes redescendent.
 // Claude pilote la même cible avec l'outil `apercu` : chacun voit ce que fait l'autre.
 //
@@ -304,7 +304,7 @@ async function choose($: EngineInterface, nom: string) {
 const TOOL_DESCRIPTION = [
   'Voit et pilote ce que l\'utilisateur regarde en direct dans le panneau Aperçu (desktop, mobile en Remote Control ou terminal) : le site, l\'app mobile, le client lourd ou le jeu du projet.',
   'Chaque projet décrit ses « cibles » dans .apercu.json à sa racine : web (Chromium, ou un Chromium/Electron existant par cdp), adb (Android), ios (simulateur), ecran (un écran ou une zone), pont (un adaptateur qui parle le protocole Aperçu, sur cette machine ou une autre).',
-  'S\'il n\'y en a pas encore, ou si l\'utilisateur demande l\'aperçu d\'un projet qui n\'est pas un site local : intègre-le d\'abord en suivant la skill apercu:integrer (détecter le type de projet, choisir le pilote, écrire un adaptateur si besoin, monter le pont réseau, écrire .apercu.json, puis action "config").',
+  'S\'il n\'y en a pas encore, ou si l\'utilisateur demande l\'aperçu d\'un projet qui n\'est pas un site local : intègre-le d\'abord en suivant la skill apercu:integrate (détecter le type de projet, choisir le pilote, écrire un adaptateur si besoin, monter le pont réseau, écrire .apercu.json, puis action "config").',
   'Actions : cibles, config (recharge .apercu.json), choisir, state, touch (repère n, avec text pour remplir), tap (fx, fy de 0 à 1), type, key, scroll, back, home, goto/reload/device (web), launch (adb, ios), shot (capture PNG à lire avec Read).',
   'L\'utilisateur agit sur la même cible entre deux appels : relis l\'état avant d\'enchaîner.',
 ].join(' ')
@@ -315,7 +315,7 @@ export const register: Register = (on, options) => {
   startUrl = String(options.url ?? '').trim() || startUrl
 
   on('session.start', async ($, e, next) => {
-    await $.command.register({ name: 'apercu', description: 'Le site, l\'app ou le jeu du projet, en direct dans un panneau (navigable)' })
+    await $.command.register({ name: 'preview', description: "The project's site, app or game, live in a panel (navigable)" })
     await $.tool.register({
       name: 'apercu',
       description: TOOL_DESCRIPTION,
@@ -342,7 +342,7 @@ export const register: Register = (on, options) => {
     return next(e)
   })
 
-  on('command.run', { command: 'apercu' }, async ($, e) => {
+  on('command.run', { command: 'preview' }, async ($, e) => {
     await $.ui.open({ id: PANE, title: 'Aperçu', focus: true })
     void (async () => {
       if (!(await ensureDaemon($))) return
@@ -353,7 +353,7 @@ export const register: Register = (on, options) => {
       else await act($, { type: 'goto', url: arg })
       await tick($, true)
     })()
-    return { text: 'Aperçu ouvert dans un panneau.' }
+    return { text: 'Preview open in a panel.' }
   })
 
   on('tool.call', { tool: 'mcp__apercu__apercu' }, async ($, e) => {
@@ -379,7 +379,7 @@ export const register: Register = (on, options) => {
     if (a === 'state') {
       const r = await $.http.fetch(api(`/state${cible ? `?cible=${encodeURIComponent(cible)}` : ''}`))
       out = JSON.parse(r.text)
-      if ((out as any).seq === -1) return text('Aucune cible. Intègre le projet (skill apercu:integrer) ou action "config".')
+      if ((out as any).seq === -1) return text('Aucune cible. Intègre le projet (skill apercu:integrate) ou action "config".')
     } else {
       const body: Record<string, unknown> = { by: 'claude', type: a === 'touch' ? 'hint' : a, cible }
       for (const k of ['url', 'n', 'text', 'fx', 'fy', 'key', 'dy', 'full']) if (input[k] !== undefined) body[k] = input[k]

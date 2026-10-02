@@ -27,7 +27,7 @@ def call(path, body=None):
     except urllib.error.HTTPError as err:
         return json.load(err)
     except OSError:
-        sys.exit(f"apercu : pas de hub sur le port {PORT} (ouvre le panneau avec /apercu)")
+        sys.exit(f"apercu : pas de hub sur le port {PORT} (open the panel with /preview)")
 
 
 def show(s):

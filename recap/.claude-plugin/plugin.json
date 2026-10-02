@@ -1,6 +1,6 @@
 {
   "name": "recap",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "/recap: a summary of the session (done, in progress, left) in a panel, ready to paste into a log",
   "types": "./types/index.d.ts",
   "userConfig": {

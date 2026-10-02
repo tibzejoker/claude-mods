@@ -1,6 +1,6 @@
 {
   "name": "terminal-distant",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A terminal in a panel: from the desktop client, VS Code or your phone in Remote Control, run commands on the session's machine and attach the output to your next message",
   "types": "./types/index.d.ts",
   "userConfig": {

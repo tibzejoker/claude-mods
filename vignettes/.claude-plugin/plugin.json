@@ -1,7 +1,7 @@
 {
   "name": "vignettes",
-  "version": "0.1.0",
-  "description": "Thumbnails in the terminal of the images Claude reads or shares (Read, SendUserFile, MCP screenshots), and a /voir gallery on every screen",
+  "version": "0.2.0",
+  "description": "Thumbnails in the terminal of the images Claude reads or shares (Read, SendUserFile, MCP screenshots), and a /gallery view on every screen",
   "types": "./types/index.d.ts",
   "userConfig": {
     "pixels": {

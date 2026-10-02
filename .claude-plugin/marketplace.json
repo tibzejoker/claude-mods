@@ -14,32 +14,32 @@
     {
       "name": "vignettes",
       "source": "./vignettes",
-      "description": "Thumbnails in the terminal of the images Claude reads or shares (Read, SendUserFile, MCP screenshots), and a /voir gallery on every screen",
-      "version": "0.1.0"
+      "description": "Thumbnails in the terminal of the images Claude reads or shares (Read, SendUserFile, MCP screenshots), and a /gallery view on every screen",
+      "version": "0.2.0"
     },
     {
       "name": "terminal-distant",
       "source": "./terminal-distant",
       "description": "A terminal in a panel: from the desktop client, VS Code or your phone in Remote Control, run commands on the session's machine and attach the output to your next message",
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "name": "apercu",
       "source": "./apercu",
       "description": "What Claude is building (website, mobile app, desktop client, Unity game…), live in a panel of the client (desktop, mobile in Remote Control, terminal): Claude hooks up the project and the network bridge itself, and drives the same target as you",
-      "version": "0.2.0"
+      "version": "0.3.0"
     },
     {
       "name": "recap",
       "source": "./recap",
       "description": "/recap: a summary of the session (done, in progress, left) in a panel, ready to paste into a log",
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "name": "masque-secrets",
       "source": "./masque-secrets",
       "description": "Masks the values from ~/.claude/secrets/*.env in everything the model reads",
-      "version": "0.1.0"
+      "version": "0.2.0"
     }
   ]
 }

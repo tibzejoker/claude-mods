@@ -8,7 +8,7 @@ import type { Rgba } from './png'
 // Le client desktop affiche les images que Claude lit ou partage ; le terminal
 // n'en montre que le nom. Ce mod les dessine en miniature sous la ligne de
 // l'outil (demi-blocs colorés, ou vraies images sur kitty / Ghostty), et les
-// garde dans une galerie /voir, lisible aussi depuis le téléphone en Remote Control.
+// garde dans une galerie /gallery, lisible aussi depuis le téléphone en Remote Control.
 //
 // PNG décodé ici même ; JPEG, WebP, GIF, HEIC passent par le premier outil
 // trouvé sur la machine (ImageMagick, ffmpeg, sips sur macOS, Pillow).
@@ -210,7 +210,7 @@ export const register: Register = (on, options) => {
     const term = `${(await $.env.get('TERM_PROGRAM')) ?? ''} ${(await $.env.get('TERM')) ?? ''}`
     const inTmux = Boolean(await $.env.get('TMUX'))
     isKitty = options.pixels === 'kitty' || (options.pixels !== 'blocs' && !inTmux && /kitty|ghostty|wezterm/i.test(term))
-    await $.command.register({ name: 'voir', description: 'Galerie des images lues ou partagées dans cette session' })
+    await $.command.register({ name: 'gallery', description: 'Gallery of the images read or shared in this session' })
     return next(e)
   })
 
@@ -227,10 +227,10 @@ export const register: Register = (on, options) => {
     return r
   })
 
-  on('command.run', { command: 'voir' }, async $ => {
+  on('command.run', { command: 'gallery' }, async $ => {
     const list = await read($, shots)
     await $.ui.open({ id: PANE, title: 'Images', focus: true, closeOnEscape: true })
-    return { text: list.length ? `${list.length} image(s) dans la galerie.` : 'Aucune image vue pour l\'instant dans cette session.' }
+    return { text: list.length ? `${list.length} image(s) in the gallery.` : 'No image seen in this session yet.' }
   })
 
   // la miniature sous la ligne de l'outil, dans le terminal seulement : ailleurs le client montre déjà l'image

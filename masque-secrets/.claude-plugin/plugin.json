@@ -1,6 +1,6 @@
 {
   "name": "masque-secrets",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Masks the values from ~/.claude/secrets/*.env in everything the model reads",
   "userConfig": {
     "dossier": {

@@ -1,6 +1,6 @@
 {
   "name": "apercu",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "What Claude is building (website, mobile app, desktop client, Unity game…), live in a panel of the client (desktop, mobile in Remote Control, terminal): Claude hooks up the project and the network bridge itself, and drives the same target as you",
   "author": {
     "name": "tibzejoker",
@@ -10,7 +10,7 @@
     "url": {
       "type": "string",
       "title": "URL opened at startup",
-      "description": "The site /apercu opens when the project has no .apercu.json yet",
+      "description": "The site /preview opens when the project has no .apercu.json yet",
       "default": "http://localhost:3000"
     },
     "python": {

@@ -70,4 +70,4 @@ An unknown action answers `ok: false` with a sentence: it goes back to Claude as
 
 - The hub only listens on 127.0.0.1, unless an explicit `--bind`, which then requires a `--token`.
 - An inbound bridge requires its own `jeton`.
-- Everything that leaves the machine goes through a path the user has accepted: SSH, VPN, LAN, tunnel. See the `integrer` skill.
+- Everything that leaves the machine goes through a path the user has accepted: SSH, VPN, LAN, tunnel. See the `integrate` skill.

@@ -66,12 +66,12 @@ export const register: Register = (on, options) => {
   on('session.start', async ($, e, next) => {
     await loadSecrets($)
     $.clock.every(5 * 60_000, () => void loadSecrets($))
-    await $.command.register({ name: 'secrets-masques', description: 'Combien de secrets sont surveillés et masqués' })
+    await $.command.register({ name: 'masked-secrets', description: 'How many secrets are watched and masked' })
     return next(e)
   })
 
-  on('command.run', { command: 'secrets-masques' }, async () => ({
-    text: `${secrets.length} valeurs surveillées (${[...new Set(secrets.map(s => s.name))].join(', ') || 'aucune'}), ${masked} masquage(s) dans cette session.`,
+  on('command.run', { command: 'masked-secrets' }, async () => ({
+    text: `${secrets.length} values watched (${[...new Set(secrets.map(s => s.name))].join(', ') || 'none'}), ${masked} masked in this session.`,
   }))
 
   on('session.append', async ($, e, next) => {

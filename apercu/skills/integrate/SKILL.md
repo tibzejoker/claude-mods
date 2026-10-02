@@ -1,11 +1,11 @@
 ---
-name: integrer
+name: integrate
 description: Hook the Aperçu panel up to any project, so the user sees and drives what Claude is building live (website, mobile app, desktop client, Unity game or anything else), even when the session runs on another machine. Detect the project type, pick the driver, write an adapter if needed, set up the network bridge (localhost, LAN, VPN, SSH, tunnel), write .apercu.json, verify. Use when the user wants to "see the app", "the preview", "test it by hand", a "side window" of the project, or when the apercu tool answers that there is no target.
 ---
 
 # Hooking Aperçu up to a project
 
-The goal: the user opens `/apercu` and sees what you are building, live and navigable, whatever the project. You do the integration yourself. Only ask the user for what you cannot do alone, such as running a command on their own machine.
+The goal: the user opens `/preview` and sees what you are building, live and navigable, whatever the project. You do the integration yourself. Only ask the user for what you cannot do alone, such as running a command on their own machine.
 
 The hub runs **next to the session** (`$PLUGIN/daemon/apercu.py serve`, started by the mod, 127.0.0.1:7357). It holds **targets**. Your job is to describe the project's targets in `.apercu.json` at its root, then make each one reachable.
 
@@ -91,7 +91,7 @@ Options per driver:
 1. `apercu` tool, `config` action, then `cibles`: every target must be `prête` (ready). If one is `en panne` (down), the error says why: fix it and start again.
 2. `state` on each target, then `shot`, and read the image with Read: check it is the right thing, framed, up to date.
 3. Make **one** real gesture (tap a button, type in a field) and check the image changes.
-4. Tell the user what is hooked up, one line per target: how to open it (`/apercu`, or `/apercu <name>`), what runs in the background (a tunnel, an Xvfb, an emulator) and how to stop it.
+4. Tell the user what is hooked up, one line per target: how to open it (`/preview`, or `/preview <name>`), what runs in the background (a tunnel, an Xvfb, an emulator) and how to stop it.
 
 ## Unity in detail
 

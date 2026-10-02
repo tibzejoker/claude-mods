@@ -42,7 +42,7 @@ export const register: Register = (on, options) => {
   prompt = buildPrompt(String(options.langue ?? ''), String(options.consignes ?? ''))
 
   on('session.start', async ($, e, next) => {
-    await $.command.register({ name: 'recap', description: 'Résumé de la session (fait, en attente, prochaines étapes) dans un panneau' })
+    await $.command.register({ name: 'recap', description: 'Session summary (done, pending, next steps) in a panel' })
     return next(e)
   })
 
