@@ -1,0 +1,18 @@
+{
+  "name": "terminal-distant",
+  "version": "0.1.0",
+  "description": "Un terminal dans un panneau : depuis le client desktop, VS Code ou le téléphone en Remote Control, lancer des commandes sur la machine de la session et joindre la sortie au prochain message",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "raccourcis": {
+      "type": "string",
+      "title": "Commandes en boutons",
+      "description": "Séparées par | ; seules commandes possibles sur mobile, qui n'a pas de champ de saisie",
+      "default": "git status|git log --oneline -8|ls -la|df -h|uptime"
+    }
+  },
+  "author": {
+    "name": "tibzejoker",
+    "url": "https://github.com/tibzejoker"
+  }
+}

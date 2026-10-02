@@ -1,0 +1,41 @@
+{
+  "name": "qg",
+  "version": "0.7.0",
+  "description": "Clawd's HQ: Clawd lives in a pixel art office, mimes what Claude does, and a game HUD shows the model, context and rate limits",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "hauteur": {
+      "type": "number",
+      "title": "Terminal height",
+      "description": "Maximum height of the office in the terminal, in rows (10 to 54); never taller than the pane has room for, the whole room is scaled to fit",
+      "default": 40
+    },
+    "largeur": {
+      "type": "number",
+      "title": "Terminal width",
+      "description": "Maximum width of the office in the terminal, in columns (20 to 192); the whole room is scaled to fit the pane, keeping its proportions",
+      "default": 96
+    },
+    "resolution": {
+      "type": "string",
+      "title": "Terminal resolution",
+      "description": "mini: the office drawn in characters (cells and glyphs, Clawd as the CLI logo), clean in any small pane. hd: the full pixel art room, scaled down. auto: hd while it fits at half size or more, mini otherwise",
+      "options": [
+        "auto",
+        "mini",
+        "hd"
+      ],
+      "default": "auto"
+    },
+    "fuseau": {
+      "type": "string",
+      "title": "Time zone",
+      "description": "For the window sky, the wall clock and reset times, e.g. Europe/Paris; empty = TZ or the machine zone",
+      "default": ""
+    }
+  },
+  "author": {
+    "name": "tibzejoker",
+    "url": "https://github.com/tibzejoker"
+  }
+}

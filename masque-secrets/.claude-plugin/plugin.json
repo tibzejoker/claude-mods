@@ -1,0 +1,17 @@
+{
+  "name": "masque-secrets",
+  "version": "0.1.0",
+  "description": "Masque les valeurs de ~/.claude/secrets/*.env dans tout ce que le modèle lit",
+  "userConfig": {
+    "dossier": {
+      "type": "string",
+      "title": "Dossier des secrets",
+      "description": "Ses fichiers .env sont lus ; seules les variables au nom de secret (PASS, TOKEN, KEY, SECRET, CARD…) sont masquées",
+      "default": "~/.claude/secrets"
+    }
+  },
+  "author": {
+    "name": "tibzejoker",
+    "url": "https://github.com/tibzejoker"
+  }
+}

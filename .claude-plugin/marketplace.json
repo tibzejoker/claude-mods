@@ -1,0 +1,45 @@
+{
+  "name": "claude-mods",
+  "owner": {
+    "name": "tibzejoker"
+  },
+  "description": "Mods Claude Code : Clawd au bureau, miniatures d'images dans le terminal, terminal distant, aperçu live de ce que Claude construit (web, mobile, desktop, jeu), récap, masque des secrets",
+  "plugins": [
+    {
+      "name": "qg",
+      "source": "./qg",
+      "description": "Clawd's HQ: Clawd lives in a pixel art office and mimes what Claude does, with a game HUD (model, context, rate limits), menus and interactions",
+      "version": "0.7.0"
+    },
+    {
+      "name": "vignettes",
+      "source": "./vignettes",
+      "description": "Miniatures dans le terminal des images que Claude lit ou partage (Read, SendUserFile, captures MCP), et galerie /voir sur tous les écrans",
+      "version": "0.1.0"
+    },
+    {
+      "name": "terminal-distant",
+      "source": "./terminal-distant",
+      "description": "Un terminal dans un panneau : depuis le client desktop, VS Code ou le téléphone en Remote Control, lancer des commandes sur la machine de la session et joindre la sortie au prochain message",
+      "version": "0.1.0"
+    },
+    {
+      "name": "apercu",
+      "source": "./apercu",
+      "description": "Ce que Claude construit (site, app mobile, client lourd, jeu Unity…), en direct dans un panneau du client (desktop, mobile en Remote Control, terminal) : Claude branche lui-même le projet et le pont réseau, et pilote la même cible que toi",
+      "version": "0.2.0"
+    },
+    {
+      "name": "recap",
+      "source": "./recap",
+      "description": "/recap : résumé de la session (fait, en cours, reste) dans un panneau, prêt à coller dans un journal",
+      "version": "0.1.0"
+    },
+    {
+      "name": "masque-secrets",
+      "source": "./masque-secrets",
+      "description": "Masque les valeurs de ~/.claude/secrets/*.env dans tout ce que le modèle lit",
+      "version": "0.1.0"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "apercu",
+  "version": "0.2.0",
+  "description": "Ce que Claude construit (site, app mobile, client lourd, jeu Unity…), en direct dans un panneau du client (desktop, mobile en Remote Control, terminal) : Claude branche lui-même le projet et le pont réseau, et pilote la même cible que toi",
+  "author": {
+    "name": "tibzejoker",
+    "url": "https://github.com/tibzejoker"
+  },
+  "userConfig": {
+    "url": {
+      "type": "string",
+      "title": "URL ouverte au démarrage",
+      "description": "Le site ouvert par /apercu quand le projet n'a pas encore de .apercu.json",
+      "default": "http://localhost:3000"
+    },
+    "python": {
+      "type": "string",
+      "title": "Python du hub",
+      "description": "L'interpréteur qui lance le hub ; selon les cibles : playwright (web), pillow, mss (écran)",
+      "default": "python3"
+    },
+    "port": {
+      "type": "number",
+      "title": "Port local du hub",
+      "description": "Sur 127.0.0.1 seulement",
+      "default": 7357
+    }
+  }
+}

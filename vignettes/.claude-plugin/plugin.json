@@ -1,0 +1,35 @@
+{
+  "name": "vignettes",
+  "version": "0.1.0",
+  "description": "Miniatures dans le terminal des images que Claude lit ou partage (Read, SendUserFile, captures MCP), et galerie /voir sur tous les écrans",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "pixels": {
+      "type": "string",
+      "title": "Rendu des images",
+      "description": "blocs : demi-blocs colorés, partout (tmux compris). kitty : vraies images (kitty, Ghostty, WezTerm). auto : kitty si le terminal le permet hors tmux",
+      "options": [
+        "auto",
+        "blocs",
+        "kitty"
+      ],
+      "default": "auto"
+    },
+    "largeur": {
+      "type": "number",
+      "title": "Largeur des miniatures",
+      "description": "En colonnes du terminal (8 à 120)",
+      "default": 40
+    },
+    "hauteur": {
+      "type": "number",
+      "title": "Hauteur des miniatures",
+      "description": "En lignes du terminal (3 à 60)",
+      "default": 12
+    }
+  },
+  "author": {
+    "name": "tibzejoker",
+    "url": "https://github.com/tibzejoker"
+  }
+}

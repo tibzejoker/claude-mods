@@ -1,0 +1,89 @@
+#!/usr/bin/env python3
+"""Pilote la cible du panneau Aperçu ; ce que tu fais ici, l'utilisateur le voit en direct.
+
+  apercu cibles                    les cibles du hub et laquelle est active
+  apercu config <.apercu.json>     (re)charge les cibles d'un projet
+  apercu choisir <nom>             change la cible active
+  apercu ecoute [hôte] [port]      ouvre une écoute réservée aux ponts entrants (0.0.0.0 7358)
+  apercu state                     url, repères numérotés, erreurs console
+  apercu <n> [texte]               touche le repère n (et tape le texte dedans)
+  apercu tap <fx> <fy>             touche à une position relative (0 à 1)
+  apercu type <texte> | key <Enter|Tab|Escape|...> | scroll [dy] | back | home
+  apercu goto <url> | reload | device <mobile|tablette|desktop>   (web)
+  apercu shot [chemin] [--full]    capture PNG, à lire avec Read
+Option : --cible NOM avant la commande pour viser une autre cible que l'active.
+"""
+import json, os, sys, urllib.request
+
+PORT = os.environ.get("APERCU_PORT", "7357")
+
+
+def call(path, body=None):
+    req = urllib.request.Request(f"http://127.0.0.1:{PORT}{path}", data=None if body is None else json.dumps(body).encode(),
+                                 headers={"Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            return json.load(r)
+    except urllib.error.HTTPError as err:
+        return json.load(err)
+    except OSError:
+        sys.exit(f"apercu : pas de hub sur le port {PORT} (ouvre le panneau avec /apercu)")
+
+
+def show(s):
+    if s.get("ok") is False:
+        sys.exit(f"apercu : {s.get('error')}")
+    if "cibles" in s and "seq" not in s:
+        for c in s["cibles"]:
+            mark = "*" if c["nom"] == s.get("active") else " "
+            print(f"{mark} {c['nom']:<14} {c['pilote']:<6} {c['status']}{'  ' + c['error'] if c['error'] else ''}")
+        return
+    if s.get("path"):
+        print(f"capture : {s['path']}")
+    print(f"[{s.get('cible')}/{s.get('pilote')}] {s.get('url')}  {s.get('vw')}x{s.get('vh')}")
+    for h in s.get("hints", []):
+        print(f"  {h['n']:>2} {h['kind']:<6} {h['label']}")
+    errs = [c for c in s.get("console", []) if c["kind"] not in ("warning", "info")]
+    for c in errs[-6:]:
+        print(f"  ! {c['kind']}: {c['text'][:200]}")
+
+
+a = sys.argv[1:]
+cible = None
+if a[:1] == ["--cible"]:
+    cible, a = a[1], a[2:]
+if not a or a[0] in ("-h", "--help"):
+    print(__doc__.strip()); sys.exit(0)
+cmd, rest = a[0], a[1:]
+q = f"?cible={cible}" if cible else ""
+if cmd == "cibles":
+    show(call("/cibles"))
+elif cmd == "config":
+    show(call("/config", {"chemin": os.path.abspath(rest[0] if rest else ".apercu.json")}))
+elif cmd == "choisir":
+    show(call("/active", {"nom": rest[0]}))
+elif cmd == "ecoute":
+    r = call("/ecoute", {"bind": rest[0] if rest else "0.0.0.0", "port": int(rest[1]) if len(rest) > 1 else 7358})
+    print(r.get("error") or "écoutes ponts : " + ", ".join(r["ecoutes"]))
+elif cmd == "state":
+    show(call("/state" + q))
+elif cmd == "logs":
+    for c in call("/state" + q).get("console", []):
+        print(f"{c['kind']}: {c['text']}")
+else:
+    body = {"by": "claude", "cible": cible}
+    if cmd.isdigit():
+        body.update(type="hint", n=int(cmd))
+        if rest: body["text"] = " ".join(rest)
+    else:
+        body["type"] = "tap" if cmd == "click" else cmd
+        if cmd in ("goto", "launch"): body["url"] = rest[0]
+        elif cmd in ("tap", "click"): body.update(fx=float(rest[0]), fy=float(rest[1]))
+        elif cmd == "type": body["text"] = " ".join(rest)
+        elif cmd == "key": body["key"] = rest[0]
+        elif cmd == "scroll": body["dy"] = int(rest[0]) if rest else 500
+        elif cmd == "device": body["name"] = rest[0] if rest else None
+        elif cmd == "shot":
+            body["path"] = next((r for r in rest if not r.startswith("--")), None)
+            body["full"] = "--full" in rest
+    show(call("/act", body))

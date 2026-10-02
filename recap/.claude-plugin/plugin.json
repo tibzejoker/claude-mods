@@ -1,0 +1,24 @@
+{
+  "name": "recap",
+  "version": "0.1.0",
+  "description": "/recap : résumé de la session (fait, en cours, reste) dans un panneau, prêt à coller dans un journal",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "langue": {
+      "type": "string",
+      "title": "Langue du récap",
+      "description": "Celle dans laquelle le récap est écrit",
+      "default": "français"
+    },
+    "consignes": {
+      "type": "string",
+      "title": "Consignes en plus",
+      "description": "Ajoutées au prompt, ex. « sans tiret comme ponctuation »",
+      "default": ""
+    }
+  },
+  "author": {
+    "name": "tibzejoker",
+    "url": "https://github.com/tibzejoker"
+  }
+}
