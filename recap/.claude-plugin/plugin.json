@@ -1,19 +1,19 @@
 {
   "name": "recap",
   "version": "0.1.0",
-  "description": "/recap : résumé de la session (fait, en cours, reste) dans un panneau, prêt à coller dans un journal",
+  "description": "/recap: a summary of the session (done, in progress, left) in a panel, ready to paste into a log",
   "types": "./types/index.d.ts",
   "userConfig": {
     "langue": {
       "type": "string",
-      "title": "Langue du récap",
-      "description": "Celle dans laquelle le récap est écrit",
+      "title": "Recap language",
+      "description": "The language the recap is written in, e.g. English",
       "default": "français"
     },
     "consignes": {
       "type": "string",
-      "title": "Consignes en plus",
-      "description": "Ajoutées au prompt, ex. « sans tiret comme ponctuation »",
+      "title": "Extra instructions",
+      "description": "Added to the prompt, e.g. \"no dashes as punctuation\"",
       "default": ""
     }
   },

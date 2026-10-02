@@ -1,7 +1,7 @@
 {
   "name": "apercu",
   "version": "0.2.0",
-  "description": "Ce que Claude construit (site, app mobile, client lourd, jeu Unity…), en direct dans un panneau du client (desktop, mobile en Remote Control, terminal) : Claude branche lui-même le projet et le pont réseau, et pilote la même cible que toi",
+  "description": "What Claude is building (website, mobile app, desktop client, Unity game…), live in a panel of the client (desktop, mobile in Remote Control, terminal): Claude hooks up the project and the network bridge itself, and drives the same target as you",
   "author": {
     "name": "tibzejoker",
     "url": "https://github.com/tibzejoker"
@@ -9,20 +9,20 @@
   "userConfig": {
     "url": {
       "type": "string",
-      "title": "URL ouverte au démarrage",
-      "description": "Le site ouvert par /apercu quand le projet n'a pas encore de .apercu.json",
+      "title": "URL opened at startup",
+      "description": "The site /apercu opens when the project has no .apercu.json yet",
       "default": "http://localhost:3000"
     },
     "python": {
       "type": "string",
-      "title": "Python du hub",
-      "description": "L'interpréteur qui lance le hub ; selon les cibles : playwright (web), pillow, mss (écran)",
+      "title": "Hub Python",
+      "description": "The interpreter that runs the hub; depending on the targets: playwright (web), pillow, mss (screen)",
       "default": "python3"
     },
     "port": {
       "type": "number",
-      "title": "Port local du hub",
-      "description": "Sur 127.0.0.1 seulement",
+      "title": "Hub local port",
+      "description": "On 127.0.0.1 only",
       "default": 7357
     }
   }

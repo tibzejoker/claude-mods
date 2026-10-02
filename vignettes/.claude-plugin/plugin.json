@@ -1,13 +1,13 @@
 {
   "name": "vignettes",
   "version": "0.1.0",
-  "description": "Miniatures dans le terminal des images que Claude lit ou partage (Read, SendUserFile, captures MCP), et galerie /voir sur tous les écrans",
+  "description": "Thumbnails in the terminal of the images Claude reads or shares (Read, SendUserFile, MCP screenshots), and a /voir gallery on every screen",
   "types": "./types/index.d.ts",
   "userConfig": {
     "pixels": {
       "type": "string",
-      "title": "Rendu des images",
-      "description": "blocs : demi-blocs colorés, partout (tmux compris). kitty : vraies images (kitty, Ghostty, WezTerm). auto : kitty si le terminal le permet hors tmux",
+      "title": "Image rendering",
+      "description": "blocs: colored half blocks, everywhere (tmux included). kitty: real images (kitty, Ghostty, WezTerm). auto: kitty when the terminal allows it, outside tmux",
       "options": [
         "auto",
         "blocs",
@@ -17,14 +17,14 @@
     },
     "largeur": {
       "type": "number",
-      "title": "Largeur des miniatures",
-      "description": "En colonnes du terminal (8 à 120)",
+      "title": "Thumbnail width",
+      "description": "In terminal columns (8 to 120)",
       "default": 40
     },
     "hauteur": {
       "type": "number",
-      "title": "Hauteur des miniatures",
-      "description": "En lignes du terminal (3 à 60)",
+      "title": "Thumbnail height",
+      "description": "In terminal rows (3 to 60)",
       "default": 12
     }
   },

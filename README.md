@@ -1,34 +1,34 @@
 # claude-mods
 
-Des mods pour Claude Code (2.1.28x et plus), utilisables par tout le monde.
+Mods for Claude Code (2.1.28x and later), for everyone to use.
 
-| Mod | Ce que ça fait | Où |
+| Mod | What it does | Where |
 | --- | --- | --- |
-| `clawd` | Clawd, la mascotte de Claude Code, vit dans un petit bureau et mime ce que fait Claude : il lit à la bibliothèque, code au bureau, tape au terminal, part sur le web. Il naît dans un œuf et évolue avec les tokens traités (de l'œuf à LEGEND à 10M), sa gemme dit son modèle. Les sous-agents apparaissent en mini-Clawds, les autres sessions de la machine entrent dans le bureau, la fenêtre et l'horloge suivent l'heure, un HUD de jeu montre le contexte et les limites. Pixel art sur desktop et mobile ; dans le terminal, la pièce est redessinée en caractères (Clawd comme le logo du CLI), nette dans n'importe quel panneau. `/clawd` | desktop, mobile, terminal |
-| `vignettes` | Les images que Claude lit (Read), partage (SendUserFile) ou reçoit d'un outil MCP (captures d'écran) s'affichent en miniature dans le terminal, en demi-blocs colorés (tmux compris) ou en vraies images sur kitty, Ghostty et WezTerm. `/voir` ouvre une galerie, lisible aussi depuis le téléphone. | terminal ; galerie partout |
-| `terminal-distant` | `/terminal` ouvre un shell dans un panneau : depuis l'appli desktop, VS Code ou le téléphone connecté en Remote Control, on lance des commandes sur la machine de la session (sortie en direct, `cd` retenu, Stop) et on peut joindre une sortie à son prochain message. | desktop, VS Code, mobile (boutons) |
-| `apercu` | `/apercu` affiche en direct dans un panneau ce que Claude construit, même quand la session tourne sur une autre machine (Remote Control) : un site (Chromium, ou Electron par CDP), une app Android (adb, émulateur ou téléphone), un simulateur iOS, un client lourd ou n'importe quel écran, un jeu Unity (adaptateur fourni), ou tout ce qui parle le [protocole Aperçu](apercu/PROTOCOLE.md). Claude fait l'intégration lui-même (skill `apercu:integrer`) : il reconnaît le type de projet, choisit le pilote, écrit un adaptateur si besoin, monte le pont réseau (localhost, réseau local, VPN, SSH, et un tunnel seulement si tu l'acceptes) et décrit le tout dans `.apercu.json`. On touche par repères numérotés (boutons, champs) ou, pour un jeu, par une grille (`C4`). Plusieurs cibles s'affichent en onglets. Claude pilote la même cible avec l'outil `apercu` : tu vois ses tests en direct, et les erreurs (console, journal Unity) s'affichent. | desktop, mobile, terminal |
-| `recap` | `/recap` résume la session (fait, en attente, prochaines étapes) dans un panneau, sans rien ajouter à la conversation. Bouton Copier. | partout |
-| `masque-secrets` | Les mots de passe et jetons de tes fichiers `.env` sont remplacés par `[secret:NOM]` dans ce que les outils renvoient au modèle. | partout |
+| `clawd` | Clawd, the Claude Code mascot, lives in a little office and mimes what Claude does: he reads at the bookshelf, codes at the desk, types at the terminal, heads off to the web. He hatches from an egg and evolves with the tokens processed (from egg to LEGEND at 10M); his gem shows his model. Subagents show up as mini Clawds, the machine's other sessions walk into the office, the window and the clock follow the time of day, and a game HUD shows the context and rate limits. Pixel art on desktop and mobile; in the terminal the room is redrawn in characters (Clawd as the CLI logo draws him), crisp in any pane. `/clawd` | desktop, mobile, terminal |
+| `vignettes` | Images Claude reads (Read), shares (SendUserFile) or gets from an MCP tool (screenshots) show up as thumbnails in the terminal, as colored half blocks (tmux included) or as real images on kitty, Ghostty and WezTerm. `/voir` opens a gallery, readable from your phone too. | terminal; gallery everywhere |
+| `terminal-distant` | `/terminal` opens a shell in a panel: from the desktop app, VS Code or your phone in Remote Control, run commands on the session's machine (live output, `cd` remembered, Stop) and attach an output to your next message. | desktop, VS Code, mobile (buttons) |
+| `apercu` | `/apercu` shows what Claude is building live in a panel, even when the session runs on another machine (Remote Control): a website (Chromium, or Electron over CDP), an Android app (adb, emulator or phone), an iOS simulator, a desktop client or any screen, a Unity game (adapter included), or anything that speaks the [Aperçu protocol](apercu/PROTOCOLE.md). Claude does the integration itself (`apercu:integrer` skill): it recognizes the project type, picks the driver, writes an adapter if needed, sets up the network bridge (localhost, LAN, VPN, SSH, and a tunnel only if you agree) and describes it all in `.apercu.json`. You tap through numbered markers (buttons, fields) or, for a game, a grid (`C4`). Several targets show up as tabs. Claude drives the same target with the `apercu` tool: you watch its tests live, and errors (console, Unity log) show up. | desktop, mobile, terminal |
+| `recap` | `/recap` sums up the session (done, pending, next steps) in a panel, without adding anything to the conversation. Copy button. | everywhere |
+| `masque-secrets` | Passwords and tokens from your `.env` files are replaced with `[secret:NAME]` in what tools send back to the model. | everywhere |
 
-## Installer
+## Install
 
 ```sh
 claude plugin marketplace add tibzejoker/claude-mods
 claude plugin install clawd@claude-mods
 ```
 
-Remplace `clawd` par le mod voulu. Ou pour essayer sans installer, depuis un clone : `claude --plugin-dir ./clawd`.
+Swap `clawd` for the mod you want. Or to try one without installing, from a clone: `claude --plugin-dir ./clawd`.
 
-Dans le terminal, `ctrl+x tab` (ou un clic) donne le clavier au panneau de `clawd` : `p` caresse Clawd, `s` lui donne un cookie, `d` le fait danser, `1` `2` `3` ouvrent les menus, `Esc` rend la main.
+In the terminal, `ctrl+x tab` (or a click) gives the keyboard to the `clawd` panel: `p` pets Clawd, `s` gives him a cookie, `d` makes him dance, `1` `2` `3` open the menus, `Esc` hands it back.
 
-## Limites connues
+## Known limits
 
-- `apercu` : le hub est en Python ; chaque pilote a ses dépendances (`playwright` pour le web, `pillow` partout, `mss` et `pynput` ou `python-xlib` pour un écran, `adb`, `xcrun` et `idb` pour iOS). Claude les installe au besoin. Un émulateur Android demande une machine avec virtualisation ; sinon, un téléphone en Wi-Fi ou par VPN. L'adaptateur Unity n'a pas encore été compilé dans un vrai projet.
+- `apercu`: the hub is in Python; each driver has its own dependencies (`playwright` for the web, `pillow` everywhere, `mss` and `pynput` or `python-xlib` for a screen, `adb`, `xcrun` and `idb` for iOS). Claude installs them when needed. An Android emulator needs a machine with virtualization; otherwise, a phone over Wi-Fi or a VPN. The Unity adapter has not been compiled in a real project yet.
+- Some mods (`vignettes`, `terminal-distant`, `apercu`, `recap`, `masque-secrets`) still have a French interface and French names; `clawd` is in English.
+- `vignettes` decodes PNG itself; JPEG, WebP, GIF and HEIC go through the first tool found on the machine (ImageMagick, ffmpeg, sips on macOS, Pillow).
+- `terminal-distant` is not a real TTY: no vim or top, no input while a command runs. Commands run with your rights, outside Claude's permissions: you are the one typing, not the model.
 
-- `vignettes` décode le PNG lui-même ; JPEG, WebP, GIF et HEIC passent par le premier outil trouvé sur la machine (ImageMagick, ffmpeg, sips sur macOS, Pillow).
-- `terminal-distant` n'est pas un vrai TTY : pas de vim ni de top, pas de saisie pendant qu'une commande tourne. Les commandes tournent avec tes droits, sans passer par les permissions de Claude : c'est toi qui tapes, pas le modèle.
+## License
 
-## Licence
-
-MIT, voir [LICENSE](LICENSE).
+MIT, see [LICENSE](LICENSE).

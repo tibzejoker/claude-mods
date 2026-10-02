@@ -1,12 +1,12 @@
 {
   "name": "masque-secrets",
   "version": "0.1.0",
-  "description": "Masque les valeurs de ~/.claude/secrets/*.env dans tout ce que le modèle lit",
+  "description": "Masks the values from ~/.claude/secrets/*.env in everything the model reads",
   "userConfig": {
     "dossier": {
       "type": "string",
-      "title": "Dossier des secrets",
-      "description": "Ses fichiers .env sont lus ; seules les variables au nom de secret (PASS, TOKEN, KEY, SECRET, CARD…) sont masquées",
+      "title": "Secrets folder",
+      "description": "Its .env files are read; only variables with a secret-like name (PASS, TOKEN, KEY, SECRET, CARD…) are masked",
       "default": "~/.claude/secrets"
     }
   },

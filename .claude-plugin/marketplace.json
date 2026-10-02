@@ -3,7 +3,7 @@
   "owner": {
     "name": "tibzejoker"
   },
-  "description": "Mods Claude Code : Clawd au bureau, miniatures d'images dans le terminal, terminal distant, aperçu live de ce que Claude construit (web, mobile, desktop, jeu), récap, masque des secrets",
+  "description": "Claude Code mods: Clawd's office, image thumbnails in the terminal, a remote terminal, a live preview of what Claude builds (web, mobile, desktop, game), session recap, secret masking",
   "plugins": [
     {
       "name": "clawd",
@@ -14,31 +14,31 @@
     {
       "name": "vignettes",
       "source": "./vignettes",
-      "description": "Miniatures dans le terminal des images que Claude lit ou partage (Read, SendUserFile, captures MCP), et galerie /voir sur tous les écrans",
+      "description": "Thumbnails in the terminal of the images Claude reads or shares (Read, SendUserFile, MCP screenshots), and a /voir gallery on every screen",
       "version": "0.1.0"
     },
     {
       "name": "terminal-distant",
       "source": "./terminal-distant",
-      "description": "Un terminal dans un panneau : depuis le client desktop, VS Code ou le téléphone en Remote Control, lancer des commandes sur la machine de la session et joindre la sortie au prochain message",
+      "description": "A terminal in a panel: from the desktop client, VS Code or your phone in Remote Control, run commands on the session's machine and attach the output to your next message",
       "version": "0.1.0"
     },
     {
       "name": "apercu",
       "source": "./apercu",
-      "description": "Ce que Claude construit (site, app mobile, client lourd, jeu Unity…), en direct dans un panneau du client (desktop, mobile en Remote Control, terminal) : Claude branche lui-même le projet et le pont réseau, et pilote la même cible que toi",
+      "description": "What Claude is building (website, mobile app, desktop client, Unity game…), live in a panel of the client (desktop, mobile in Remote Control, terminal): Claude hooks up the project and the network bridge itself, and drives the same target as you",
       "version": "0.2.0"
     },
     {
       "name": "recap",
       "source": "./recap",
-      "description": "/recap : résumé de la session (fait, en cours, reste) dans un panneau, prêt à coller dans un journal",
+      "description": "/recap: a summary of the session (done, in progress, left) in a panel, ready to paste into a log",
       "version": "0.1.0"
     },
     {
       "name": "masque-secrets",
       "source": "./masque-secrets",
-      "description": "Masque les valeurs de ~/.claude/secrets/*.env dans tout ce que le modèle lit",
+      "description": "Masks the values from ~/.claude/secrets/*.env in everything the model reads",
       "version": "0.1.0"
     }
   ]
